@@ -28,7 +28,9 @@ module.exports = {
     output: {
         filename: 'dTree.js',
         path: path.resolve(__dirname, 'demo'),
-        clean: true
+        clean: true,
+        globalObject: 'this',
+        libraryTarget: 'umd'
     },
     plugins: [new HtmlWebpackPlugin({
         template: "./src/demo/index.html"

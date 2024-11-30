@@ -3,7 +3,7 @@ import {TreeNode} from "./TreeNode";
 import {TreeBuilderOptions} from "./TreeBuilderOptions";
 import * as _ from 'lodash';
 
-const dTree = {
+export const dTree = {
     init: (data: any, options?: TreeBuilderOptions): TreeBuilder => {
 
 
@@ -65,5 +65,3 @@ const dTree = {
         return new TreeBuilder(data, [], opts);
     }
 }
-
-export default dTree;
