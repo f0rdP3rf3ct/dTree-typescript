@@ -18,6 +18,9 @@ export default class TreeBuilder {
     private _tree: TreeLayout<any>;
     private _zoom: ZoomBehavior<ZoomedElementBaseType, unknown>;
 
+    // svg
+    private _g: any;
+
     constructor(root: TreeNode, siblings: TreeNode[], opts: TreeBuilderOptions) {
         this._root = root;
         this._siblings = siblings;
@@ -85,6 +88,26 @@ export default class TreeBuilder {
 
         recurse(root);
         return n;
+    }
+
+    private _update(root: any) {
+        /**
+        let opts = this._opts;
+        let allNodes = this._allNodes;
+        let nodeSize = this._nodeSize;
+        let marriageSize = this._marriageSize;
+
+        let treeNodes = this._tree(root);
+        let links = treeNodes.links();
+
+        // Create the link lines
+        this._g.selectAll('.link')
+            .data(links)
+            .enter()
+            .filter(l => l.target.data.noParent)
+
+        ;
+        */
     }
 
     /**
@@ -233,7 +256,7 @@ export default class TreeBuilder {
             .call(zoom)
 
         // create svg group that holds all nodes
-        const g = svg.append('g')
+        const g = this._g = svg.append('g')
 
         // set zoom identity
         svg.call(zoom.transform, d3.zoomIdentity.translate(width / 2, opts.margin.top).scale(1))
@@ -248,8 +271,7 @@ export default class TreeBuilder {
             }
         });
 
-//        this._update(this.root);
-
+        // this._update(this.root);
     }
 
     public get nodeSize(): [number, number] {
