@@ -30,9 +30,21 @@ module.exports = {
         path: path.resolve(__dirname, 'demo'),
         clean: true,
         globalObject: 'this',
-        libraryTarget: 'umd'
+        library: {
+            export: 'default',
+            name: 'dTree',
+            type: 'umd'
+        }
     },
     plugins: [new HtmlWebpackPlugin({
         template: "./src/demo/index.html"
     })],
+    externals: {
+        lodash: {
+            commonjs: 'lodash',
+            commonjs2: 'lodash',
+            amd: 'lodash',
+            root: '_',
+        }
+    }
 };

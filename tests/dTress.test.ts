@@ -1,4 +1,4 @@
-import {dTree} from "../src/dTree";
+import dTree from "../src/dTree";
 import TreeBuilder from "../src/TreeBuilder";
 import {TreeNode} from "../src/TreeNode";
 
