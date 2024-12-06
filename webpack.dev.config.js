@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin")
+const CopyPlugin = require("copy-webpack-plugin")
 
 module.exports = {
     entry: './src/dTree.ts',
@@ -7,9 +8,6 @@ module.exports = {
     mode: "development",
     target: 'web',
     devServer: {
-        static: {
-            directory: path.join(__dirname, 'demo')
-        },
         compress: true,
         port: 9100
     },
@@ -36,15 +34,17 @@ module.exports = {
             type: 'umd'
         }
     },
-    plugins: [new HtmlWebpackPlugin({
-        template: "./src/demo/index.html"
-    })],
+    plugins: [
+        new CopyPlugin({patterns: [{from: './src/demo/data.json', to: path.resolve(__dirname, 'demo')}]}),
+        new HtmlWebpackPlugin({template: "./src/demo/index.html"})
+    ],
     externals: {
         lodash: {
             commonjs: 'lodash',
             commonjs2: 'lodash',
             amd: 'lodash',
             root: '_',
-        }
+        },
+        d3: 'd3'
     }
 };
